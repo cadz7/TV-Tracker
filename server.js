@@ -12,7 +12,7 @@ var async = require('async');
 var request = require('request');
 var xml2js = require('xml2js');
 var _ = require('lodash');
-var agenda = require('agenda')({ db: { address: 'mongodb://user:password@ds053597.mongolab.com:53597/showtracker' } });
+var agenda = require('agenda')({ db: { address: 'mongodb://sahat:foobar@ds041178.mongolab.com:41178/showtrackrdemo' } });
 var sugar = require('sugar');
 var nodemailer = require('nodemailer');
 var showSchema = new mongoose.Schema({
@@ -90,7 +90,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, passw
 
 
 
-mongoose.connect('mongodb://user:password@ds053597.mongolab.com:53597/showtracker');
+mongoose.connect('mongodb://sahat:foobar@ds041178.mongolab.com:41178/showtrackrdemo');
 
 var app = express();
 
@@ -118,6 +118,10 @@ app.listen(app.get('port'), function() {
 app.post('/api/login', passport.authenticate('local'), function(req, res) {
   res.cookie('user', JSON.stringify(req.user));
   res.send(req.user);
+});
+
+app.get("/", function(req, res) {
+ res.send("Heroku Demo!");
 });
 
 app.get('/api/logout', function(req, res) {
