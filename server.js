@@ -12,7 +12,7 @@ var async = require('async');
 var request = require('request');
 var xml2js = require('xml2js');
 var _ = require('lodash');
-var agenda = require('agenda')({ db: { address: 'mongodb://sahat:foobar@ds041178.mongolab.com:41178/showtrackrdemo' } });
+var agenda = require('agenda')({ db: { address: 'mongodb://user1:password@ds027479.mongolab.com:27479/showtrackr' } });
 var sugar = require('sugar');
 var nodemailer = require('nodemailer');
 var showSchema = new mongoose.Schema({
@@ -90,7 +90,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, passw
 
 
 
-mongoose.connect('mongodb://sahat:foobar@ds041178.mongolab.com:41178/showtrackrdemo');
+mongoose.connect('mongodb://user1:password@ds027479.mongolab.com:27479/showtrackr');
 
 var app = express();
 
