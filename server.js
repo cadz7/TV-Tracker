@@ -39,10 +39,35 @@ var showSchema = new mongoose.Schema({
       overview: String
   }]
 });
+var suggestedshowsSchema = new mongoose.Schema({
+  _id: Number,
+  name: String,
+  airsDayOfWeek: String,
+  airsTime: String,
+  firstAired: Date,
+  genre: [String],
+  network: String,
+  overview: String,
+  rating: Number,
+  ratingCount: Number,
+  status: String,
+  poster: String,
+  subscribers: [{
+    type: mongoose.Schema.Types.ObjectId, ref: 'User'
+  }],
+  episodes: [{
+      season: Number,
+      episodeNumber: Number,
+      episodeName: String,
+      firstAired: Date,
+      overview: String
+  }]
+});
 var userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String
 });
+
 
 userSchema.pre('save', function(next) {
   var user = this;
@@ -65,6 +90,7 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
 };
 var User = mongoose.model('User', userSchema);
 var Show = mongoose.model('Show', showSchema);
+var SuggestedShows = mongoose.model('SuggestedShows', suggestedshowsSchema);
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -120,10 +146,6 @@ app.post('/api/login', passport.authenticate('local'), function(req, res) {
   res.send(req.user);
 });
 
-app.get("/", function(req, res) {
- res.send("Heroku Demo!");
-});
-
 app.get('/api/logout', function(req, res) {
   req.logout();
   res.send(200);
@@ -148,7 +170,7 @@ app.get('/api/shows', function(req, res, next) {
   } else if (req.query.alphabet) {
     query.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') });
   } else {
-    query.limit(12);
+    query.limit(30);
   }
   query.exec(function(err, shows) {
     if (err) return next(err);
@@ -159,6 +181,14 @@ app.get('/api/shows/:id', function(req, res, next) {
   Show.findById(req.params.id, function(err, show) {
     if (err) return next(err);
     res.send(show);
+  });
+});
+
+app.get('/api/suggestedshows', function(req, res, next) {
+  var query = SuggestedShows.find();
+  query.exec(function(err, shows) {
+    if (err) return next(err);
+    res.send(shows);
   });
 });
 

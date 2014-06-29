@@ -6,11 +6,12 @@ angular.module('MyApp')
           $scope.showName = '';
           $scope.addForm.$setPristine();
           $alert({
-            content: 'TV show has been added.',
+            content: Show + 'has been added.',
             placement: 'top-right',
             type: 'success',
             duration: 3
           });
+          console.log($scope.showName);
         },
         function(response) {
           $scope.showName = '';
@@ -23,4 +24,5 @@ angular.module('MyApp')
           });
         });
     };
+    $scope.shows = Show.query();
   }]);

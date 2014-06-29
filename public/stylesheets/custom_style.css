@@ -1,0 +1,12 @@
+.navbar-brand {
+	background-color: #FFB0B0;
+	transition: 0.25s all;
+	margin-left: -15px;
+}
+.hoveredImage {
+	-webkit-transition: all .2s ease-in-out;
+}
+.hoveredImage:hover {
+	opacity: 0.5;
+	-webkit-transform: scale(1.06);
+}

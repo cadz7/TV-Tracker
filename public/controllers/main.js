@@ -11,9 +11,16 @@ angular.module('MyApp')
       'Romance', 'Sci-Fi', 'Sport', 'Suspense', 'Talk Show', 'Thriller',
       'Travel'];
 
-    $scope.headingTitle = 'Top 12 Shows';
+    $scope.headingTitle = 'Top 30 Shows';
 
-    $scope.shows = Show.query();
+    $scope.shows = Show.query(function(){
+      $scope.shows.sort(function(a, b){
+        return a.rating-b.rating;
+      });
+      console.log($scope.shows);
+    });
+    console.log($scope.shows);
+
 
     $scope.filterByGenre = function(genre) {
       $scope.shows = Show.query({ genre: genre });
