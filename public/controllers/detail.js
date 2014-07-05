@@ -2,6 +2,7 @@ angular.module('MyApp')
   .controller('DetailCtrl', ['$scope', '$rootScope', '$routeParams', 'Show', 'Subscription',
     function($scope, $rootScope, $routeParams, Show, Subscription) {
       Show.get({ _id: $routeParams.id }, function(show) {
+        console.log(show);
         $scope.show = show;
 
         $scope.isSubscribed = function() {
@@ -21,8 +22,16 @@ angular.module('MyApp')
           });
         };
 
+        $scope.deleteShow = function() {
+          show.$delete({ _id: $routeParams.id }, function() {
+            console.log('show removed called');
+          });
+        }
+
         $scope.nextEpisode = show.episodes.filter(function(episode) {
           return new Date(episode.firstAired) > new Date();
         })[0];
       });
+      
+
     }]);

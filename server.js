@@ -7,6 +7,15 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
+
+// AWS Session
+var AWS = require('aws-sdk');
+console.log('AWS');
+
+//ImageMagick
+var gm = require('gm');
+var imageMagick = gm.subClass({ imageMagick: true });
+
 var bcrypt = require('bcryptjs');
 var async = require('async');
 var request = require('request');
@@ -88,6 +97,18 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
     cb(null, isMatch);
   });
 };
+
+
+//AWS S3 STUFF
+/*
+var s3 = new AWS.S3();
+var s3 = new AWS.S3({params: {Bucket: 'myBucket', Key: 'myKey'}});
+s3.createBucket(function() {
+  s3.putObject({Body: 'Hello!'}, function() {
+    console.log("Successfully uploaded data to myBucket/myKey");
+  });
+});*/
+
 var User = mongoose.model('User', userSchema);
 var Show = mongoose.model('Show', showSchema);
 var SuggestedShows = mongoose.model('SuggestedShows', suggestedshowsSchema);
@@ -170,7 +191,7 @@ app.get('/api/shows', function(req, res, next) {
   } else if (req.query.alphabet) {
     query.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') });
   } else {
-    query.limit(30);
+    query.limit(5);
   }
   query.exec(function(err, shows) {
     if (err) return next(err);
@@ -182,6 +203,17 @@ app.get('/api/shows/:id', function(req, res, next) {
     if (err) return next(err);
     res.send(show);
   });
+});
+
+app.delete('/api/shows/:id', function(req, res){
+    console.log("Deleting");
+    Show.findById( req.params.id, function ( err, show ){
+        if (err)
+          res.send(err);
+        show.remove( function(err, post) {
+          res.json({ message: 'Successfully deleted' });
+        });
+    });
 });
 
 app.get('/api/suggestedshows', function(req, res, next) {
