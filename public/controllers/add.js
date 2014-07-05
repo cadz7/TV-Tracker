@@ -1,12 +1,13 @@
 angular.module('MyApp')
   .controller('AddCtrl', ['$scope', '$alert', 'Show', function($scope, $alert, Show) {
     $scope.addShow = function() {
+      var showName = $scope.showName;
       Show.save({ showName: $scope.showName },
         function() {
           $scope.showName = '';
           $scope.addForm.$setPristine();
           $alert({
-            content: Show + 'has been added.',
+            content: showName + 'has been added.',
             placement: 'top-right',
             type: 'success',
             duration: 3

@@ -1,6 +1,6 @@
 angular.module('MyApp')
-  .controller('DetailCtrl', ['$scope', '$rootScope', '$routeParams', 'Show', 'Subscription',
-    function($scope, $rootScope, $routeParams, Show, Subscription) {
+  .controller('DetailCtrl', ['$scope', '$rootScope', '$routeParams', '$alert', 'Show', 'Subscription',
+    function($scope, $rootScope, $routeParams, $alert, Show, Subscription) {
       Show.get({ _id: $routeParams.id }, function(show) {
         console.log(show);
         $scope.show = show;
@@ -23,8 +23,15 @@ angular.module('MyApp')
         };
 
         $scope.deleteShow = function() {
+          var deletedShowName = $scope.show.name;
           show.$delete({ _id: $routeParams.id }, function() {
             console.log('show removed called');
+            $alert({
+              content: 'The show: ' + deletedShowName + ' has been removed.',
+              placement: 'top-right',
+              type: 'success',
+              duration: 60
+            });
           });
         }
 
