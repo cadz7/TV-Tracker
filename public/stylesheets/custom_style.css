@@ -10,3 +10,75 @@
 	opacity: 0.5;
 	-webkit-transform: scale(1.06);
 }
+
+.navbar-default {
+	background-color: #8a8087;
+	border-color: #786f75;
+}
+.navbar-default .navbar-brand {
+	color: #fffcfe;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+	color: #e4e4e4;
+}
+.navbar-default .navbar-text {
+	color: #fffcfe;
+}
+.navbar-default .navbar-nav > li > a {
+	color: #fffcfe;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	color: #e4e4e4;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	color: #e4e4e4;
+	background-color: #786f75;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+	color: #e4e4e4;
+	background-color: #786f75;
+}
+.navbar-default .navbar-toggle {
+	border-color: #786f75;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+	background-color: #786f75;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #fffcfe;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+	border-color: #fffcfe;
+}
+.navbar-default .navbar-link {
+	color: #fffcfe;
+}
+.navbar-default .navbar-link:hover {
+	color: #e4e4e4;
+}
+
+@media (max-width: 767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: #fffcfe;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+		color: #e4e4e4;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+		color: #e4e4e4;
+		background-color: #786f75;
+	}
+}
+
+.panel-body {
+	background: rgb(236, 229, 229);
+}
+
+.panel-heading {
+	background: rgb(194, 194, 194);
+}
+
+.btn-primary:hover {
+	background: rgb(119, 119, 201);
+};
