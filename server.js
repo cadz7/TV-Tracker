@@ -309,9 +309,15 @@ app.post('/api/shows', function (req, res, next) {
     },
     function (show, callback) {
       var url = 'http://thetvdb.com/banners/' + show.poster;
+      console.log('original show.poster:');
       request({ url: url, encoding: null }, function (error, response, body) {
-        show.poster = 'data:' + response.headers['content-type'] + ';base64,' + body.toString('base64');
-        callback(error, show);
+        gm(body)
+        .resize(200, 200)
+        .toBuffer(function (err, buffer) {
+          if (err) return handle(err);
+          show.poster = 'data:' + response.headers['content-type'] + ';base64,' + buffer.toString('base64');
+          callback(error, show);          
+        })
       });
     }
   ], function (err, show) {
