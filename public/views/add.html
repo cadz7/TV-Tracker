@@ -26,7 +26,7 @@
     </div>
     <div class="panel-body">
       <div class="row show-list">
-        <div class="col-xs-4 col-md-3" ng-repeat="show in shows | filter:query | orderBy:'rating':true" ng-click="addShow()">
+        <div class="col-xs-4 col-md-3 hoveredImage" ng-repeat="show in shows | filter:query | orderBy:'rating':true" ng-click="addShow()">
           <a href="/shows/{{show._id}}">
             <img class="img-rounded" ng-src="{{show.poster}}" width="100%"/>
           </a>
