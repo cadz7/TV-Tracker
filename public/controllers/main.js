@@ -11,7 +11,7 @@ angular.module('MyApp')
       'Romance', 'Sci-Fi', 'Sport', 'Suspense', 'Talk Show', 'Thriller',
       'Travel'];
 
-    $scope.headingTitle = 'Top 30 Shows';
+    $scope.headingTitle = 'Top 10 Shows';
 
     $scope.shows = Show.query(function(){
       $scope.shows.sort(function(a, b){

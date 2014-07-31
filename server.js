@@ -9,8 +9,8 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 
 // AWS Session
-var AWS = require('aws-sdk');
-console.log('AWS');
+//var AWS = require('aws-sdk');
+//console.log('AWS');
 
 //ImageMagick
 var gm = require('gm');
